@@ -1,27 +1,29 @@
 import React from 'react';
 
-import Axiliary from '../../../hoc/Auxiliary';
-const orderSummary = (props) => {
-    const ingredientSummary = Object.keys(props.ingredients)
+import Auxiliary from '../../../hoc/Auxiliary';
+import Button from '../../UI/Button/Button';
+
+const orderSummary = ( props ) => {
+    const ingredientSummary = Object.keys( props.ingredients )
         .map( igKey => {
             return (
-                    <li key={igKey}>
-                    <span style={{textTransform: 'capitalize'}}>{igKey}</span>: {props.ingredients[igKey]}
-                </li> ); 
-
-        });
+                <li key={igKey}>
+                    <span style={{ textTransform: 'capitalize' }}>{igKey}</span>: {props.ingredients[igKey]}
+                </li> );
+        } );
 
     return (
-        <Axiliary>
+        <Auxiliary>
             <h3>Your Order</h3>
-            <p>A Delicious burger with the following ingredients</p>
+            <p>A delicious burger with the following ingredients:</p>
             <ul>
                 {ingredientSummary}
             </ul>
-            <p>Continue to checkout</p>
-        </Axiliary>
-    )
-
+            <p>Continue to Checkout?</p>
+            <Button btnType="Danger" clicked={props.purchaseCancelled}>CANCEL</Button>
+            <Button btnType="Success" clicked={props.purchaseContinued}>CONTINUE</Button>
+        </Auxiliary>
+    );
 };
 
 export default orderSummary;
